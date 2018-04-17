@@ -2,6 +2,7 @@
 
 # react-native 列表
 
+![show](./demo.gif)
 
 # 安装
 * npm i react-native-sf-list
@@ -21,7 +22,63 @@
 |no_data_img|number|no|无数据提示图片|null|
 |indicator_color|string|no|加载圈颜色|#00AEF3|
 
+# Methods
+|  Methods  |  Params  |  Param Types  |   description  |  Example  |
+|:-----|:-----|:-----|:-----|:-----|
+|setRefreshing|visible|boolean|是否显示加载|this.listview.setRefreshing(true)|
+|setData|data|array|设置数据|this.listview.setData(data)|
+|addData|data|array|插入数据|this.listview.addData(data)|
+|clearData|||清空数据|this.listview.clearData()|
+
 
 # Demo
 ```
 
+import React, { Component } from 'react';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+    Dimensions
+} from 'react-native';
+import SFListView from 'react-native-sf-listview'
+var width = Dimensions.get('window').width;
+
+export default class App extends Component<Props> {
+    componentDidMount(){
+        this.onRefresh()
+    }
+  render() {
+    return (
+      <View style={styles.container}>
+        <SFListView ref={'listview'} renderItem={this.renderItem} onRefresh={this.onRefresh} onLoad={this.onLoad}/>
+      </View>
+    );
+  }
+    renderItem=(item)=>{
+        var data = item.item
+        var index = item.index
+        return (
+            <View style={{width:width,height:50,alignItems:'center',justifyContent:'center'}}>
+              <Text>{"item"+index}</Text>
+            </View>
+        )
+    }
+    onRefresh=()=>{
+        setTimeout(()=>{
+            this.refs.listview.setRefreshing(false)
+            this.refs.listview.setData([1,2,3,4,5,6,7,8,9,10])
+        },1000)
+
+    }
+    onLoad=()=>{
+        this.refs.listview.addData([1,2,3,4,5])
+    }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
