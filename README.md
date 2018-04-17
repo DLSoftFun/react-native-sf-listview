@@ -40,7 +40,7 @@ import {
   StyleSheet,
   Text,
   View,
-    Dimensions
+  Dimensions
 } from 'react-native';
 import SFListView from 'react-native-sf-listview'
 var width = Dimensions.get('window').width;
@@ -49,13 +49,13 @@ export default class App extends Component<Props> {
     componentDidMount(){
         this.onRefresh()
     }
-  render() {
-    return (
-      <View style={styles.container}>
-        <SFListView ref={'listview'} renderItem={this.renderItem} onRefresh={this.onRefresh} onLoad={this.onLoad}/>
-      </View>
-    );
-  }
+    render() {
+      return (
+        <View style={styles.container}>
+          <SFListView ref={'listview'} renderItem={this.renderItem} onRefresh={this.onRefresh} onLoad={this.onLoad}/>
+        </View>
+      );
+    }
     renderItem=(item)=>{
         var data = item.item
         var index = item.index
