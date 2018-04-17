@@ -28,7 +28,7 @@
 |setRefreshing|visible|boolean|是否显示加载|this.listview.setRefreshing(true)|
 |setData|data|array|设置数据|this.listview.setData(data)|
 |addData|data|array|插入数据|this.listview.addData(data)|
-|clearData|||清空数据|this.listview.clearData()|
+|clearData|void|void|清空数据|this.listview.clearData()|
 
 
 # Demo
